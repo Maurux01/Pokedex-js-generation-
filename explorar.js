@@ -10,7 +10,9 @@ async function buscarPokemon() {
 
     const datos = await respuesta.json();
     const types = datos.types
-    const stats =
+    const stats = datos.stats
+    
+
     console.log("========== Tu pokemon y sus estadisticas ==========");
     console.log("Nombre:", datos.name);
     console.log("Número de Pokedex:", datos.id);
