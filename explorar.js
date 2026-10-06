@@ -1,30 +1,20 @@
-/*
-Crea un archivo explorar.js . Dentro de una función async , haz un fetch a la URL de arriba con el pokémon que quieras, espera la respuesta con
-await , imprime el status de la respuesta, y luego traduce el resultado con .json() (con su propio await ). Guarda ese resultado en una variable
-llamada datos 
-
-*/
-
-async function buscarPokemon() {
-    const respuesta = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
-
-    const datos = await respuesta.json();
-    const types = datos.types
-    const stats = datos.stats
-    
-
-    console.log("========== Tu pokemon y sus estadisticas ==========");
-    console.log("Nombre:", datos.name);
-    console.log("Número de Pokedex:", datos.id);
-    console.log("Peso:", datos.weight);
-    console.log("Altura:", datos.height);
-    console.log("Habilidad 1:", datos.abilities[0].ability.name);
-    console.log("Habilidad 2:", datos.abilities[1].ability.name);
-    console.log("Tipo: ", datos.types[0].type.name);
-    console.log("Estaadisticas:",)
-    console.log("HP (Vida):", datos.stats[0].base_stat);
-    console.log("Ataque:", datos.stats[1].base_stat);
-    console.log("Defensa:", datos.stats[2].base_stat);
-    console.log("Velocidad:", datos.stats[5].base_stat)
+async function explorar() {
+  const respuesta = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+  console.log("Estado de la respuesta:", respuesta.status);
+  const datos = await respuesta.json();
+  console.log(datos);
+  console.log("Nombre:", datos.name);
+  console.log("Tipos:");
+  for (const t of datos.types) {
+    console.log(t.type.name);
+  }
+  console.log("Stats:");
+  for (const s of datos.stats) {
+    console.log(s.stat.name + ": " + s.base_stat);
+  }
+  console.log("Habilidades:");
+  for (const a of datos.abilities) {
+    console.log(a.ability.name);
+  }
 }
-buscarPokemon()
+explorear();
